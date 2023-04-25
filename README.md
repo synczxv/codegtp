@@ -1,1 +1,3 @@
-# Code created my chatgtp for various different things
+
+# Code created by chatgtp for various different things
+# Mostly to mess around with various codes
