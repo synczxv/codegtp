@@ -8,3 +8,34 @@
     <p>Enjoy</p>
   </body>
 </html>
+<DL><P>
+  <DT><A HREF=" -- Define the variables
+local player = game.Players.LocalPlayer
+local flying = false
+local flySpeed = 50
+
+-- Enable flying when the Jump button is pressed twice
+local function onJump()
+    if flying then
+        flying = false
+        player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+    else
+        flying = true
+        player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        player.Character.Humanoid.Sit = true
+        player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Falling)
+    end
+end
+
+-- Update the player's position when flying is enabled
+local function onRenderStep()
+    if flying then
+        local input = game:GetService("VirtualInputManager")
+        local moveVector = (input:GetVirtualThumbstickPosition(Enum.UserInputType.Touch) * Vector3.new(1, 0, 1)).unit * flySpeed
+        player.Character.HumanoidRootPart.Velocity = moveVector
+    end
+end
+
+-- Connect the functions to the events
+player:GetMouse().Jump:Connect(onJump)
+    game:GetService("RunService").RenderStepped:Connect(onRenderStep)"</A>
